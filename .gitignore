@@ -1,0 +1,25 @@
+# Ignore node_modules (installed dependencies)
+node_modules/
+
+# Ignore environment files
+.env
+
+# Ignore test results and reports
+test-results/
+results.xml
+
+# Ignore Playwright trace & screenshots (optional)
+playwright-report/
+traces/
+screenshots/
+
+
+# Ignore package-lock if using Yarn or PNPM (optional)
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Ignore IDE-specific files
+.vscode/
+.DS_Store
+Thumbs.db

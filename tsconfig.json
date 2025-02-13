@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",       // or "ESNext" / "NodeNext" is also fine
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true        // optional, but often helps avoid type conflicts
+  },
+  "include": [
+    "./**/*.ts"
+  ]
+}

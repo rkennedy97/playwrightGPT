@@ -1,0 +1,13 @@
+{
+    "login": {
+      "username": "fill username",
+      "password": "fill password",
+      "loginButton": "click login button The login button is an <input> element, not a <button>"
+    },
+    "cart": {
+      "bikeLight": "click add to cart for Sauce Labs Bike Light",
+      "backpack": "click add to cart for Sauce Labs Backpack",
+      "checkoutButton": "click checkout button"
+    }
+  }
+  

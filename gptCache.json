@@ -1,0 +1,58 @@
+{
+  "fill username<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "fill",
+    "selector": "input[data-test='username']"
+  },
+  "fill password<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "fill",
+    "selector": "input[data-test='password']"
+  },
+  "click login button The login button is an <input> element, not a <button><!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "click",
+    "selector": "input#login-button"
+  },
+  "select 'Price (low to high)'. The sort control is a <select> element.<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "select",
+    "selector": "select.product_sort_container"
+  },
+  "click add to cart for Sauce Labs Bike Light<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "click",
+    "selector": "button#add-to-cart-sauce-labs-bike-light"
+  },
+  "click add to cart for Sauce Labs Backpack<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "click",
+    "selector": "button#add-to-cart-sauce-labs-backpack"
+  },
+  "click shopping cart link<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "click",
+    "selector": "a.shopping_cart_link[data-test='shopping-cart-link']"
+  },
+  "click checkout button<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "click",
+    "selector": "button#checkout"
+  },
+  "fill first name<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "fill",
+    "selector": "input[data-test=firstName]"
+  },
+  "fill last name<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "fill",
+    "selector": "input[data-test='lastName']"
+  },
+  "fill postal code<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "fill",
+    "selector": "input[data-test='postalCode']"
+  },
+  "click continue button The continue button is an <input> element, not a <button><!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "click",
+    "selector": "input#continue"
+  },
+  "click finish button<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "click",
+    "selector": "#finish"
+  },
+  "find order confirmation message element with text 'Thank you for your order!'<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "get text",
+    "selector": "h2[data-test='complete-header']"
+  }
+}
