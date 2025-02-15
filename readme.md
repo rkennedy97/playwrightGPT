@@ -125,7 +125,8 @@ Optional Manual Overrides
 
 If GPT occasionally guesses incorrectly for a crucial element (like the “shopping cart link”), you can override with a known stable locator or a dictionary for those steps.
 
-Detailed Extraction Process
+**Detailed Extraction Process**
+
 Raw HTML Pruning (Optional)
 
 In regexPrune.ts, we strip out large comments, data attributes, or other raw text bloat using regex.
