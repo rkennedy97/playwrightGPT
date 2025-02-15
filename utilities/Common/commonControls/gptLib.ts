@@ -2,13 +2,15 @@
 
 import fs from 'fs';
 import { Page } from '@playwright/test';
-import { getLocatorFromGPT3_5 } from './commonControls'; // adjust as needed
+import { getLocatorFromGPT3_5 } from './commonControls'; 
+import { extractRelevantHTML } from './extractRelevantHTML'; // <-- ensure correct import path
 
 // Default cache file path, which can be changed dynamically.
 let cacheFilePath = './gptCache.json';
 let gptCallCount = 0;
 let gptCache = loadCache(cacheFilePath);
 
+/** Load GPT cache from a JSON file. */
 function loadCache(filePath: string): Map<string, any> {
   if (fs.existsSync(filePath)) {
     const data = fs.readFileSync(filePath, 'utf-8');
@@ -19,6 +21,7 @@ function loadCache(filePath: string): Map<string, any> {
   }
 }
 
+/** Save GPT cache to a JSON file. */
 function saveCache(cache: Map<string, any>, filePath: string) {
   const obj = Object.fromEntries(cache);
   fs.writeFileSync(filePath, JSON.stringify(obj, null, 2));
@@ -34,59 +37,91 @@ export function setCacheFileName(filename: string) {
   gptCache = loadCache(cacheFilePath);
 }
 
-/** 
- * getCachedLocator: Return a cached locator if it exists; otherwise, call GPT 
+/**
+ * getCachedLocator: Return a cached locator if it exists; otherwise, call GPT.
+ * 1) We check the cache based on prompt + snippet.
+ * 2) If not cached, we extract relevant HTML, truncate it to a safe size, and call GPT.
  */
-async function getCachedLocator(prompt: string, html: string) {
-  const cacheKey = prompt + html.substring(0, 200);
+async function getCachedLocator(prompt: string, fullHTML: string) {
+  const cacheKey = prompt + fullHTML.substring(0, 200);
 
   if (gptCache.has(cacheKey)) {
-    console.log('Returning cached GPT response for prompt:', prompt);
+    console.log(`✅ Using cached locator for: "${prompt}"`);
     return gptCache.get(cacheKey);
   }
 
+  // 1) Run pruning/sanitizing
+  const prunedHTML = extractRelevantHTML(prompt, fullHTML);
+
+  // 2) Possibly do your "find best match + minimal DOM" logic
+  //    or skip that if you rely on GPT for everything.
+
+  // 3) Now call GPT with the pruned HTML
   gptCallCount++;
-  const result = await getLocatorFromGPT3_5(prompt, html);
+  const result = await getLocatorFromGPT3_5(prompt, prunedHTML);
+  
+  // 4) Cache, save, return
   gptCache.set(cacheKey, result);
   saveCache(gptCache, cacheFilePath);
   return result;
 }
 
 /**
- * waitForCachedSelector: Wait for the selector; if not found, remove from cache & retry.
+ * waitForCachedSelector: Wait for the selector; if not found, remove from cache & re-try GPT.
  */
 async function waitForCachedSelector(
   page: Page,
   prompt: string,
-  htmlSnippet: string,
+  fullHTML: string,
   locator: any,
   timeout = 2000
 ) {
+  if (!locator || !locator.selector) {
+    console.error(`❌ Locator is null or invalid for prompt "${prompt}". Skipping step.`);
+    return null;
+  }
+
   try {
     await page.waitForSelector(locator.selector, { timeout });
     return locator;
   } catch (error) {
-    console.log(`Locator not found within ${timeout}ms for prompt: ${prompt}. Retrying GPT...`);
-    const cacheKey = prompt + htmlSnippet.substring(0, 200);
+    console.log(`🔎 Locator not found within ${timeout}ms for "${prompt}". Removing from cache & retrying GPT...`);
+
+    const cacheKey = prompt + fullHTML.substring(0, 200);
     gptCache.delete(cacheKey);
     saveCache(gptCache, cacheFilePath);
-    const newLocator = await getCachedLocator(prompt, htmlSnippet);
+
+    // Re-call GPT with relevant snippet
+    const newLocator = await getCachedLocator(prompt, fullHTML);
     return newLocator;
   }
 }
 
 /**
  * prompt: A single function that interprets GPT's "action" and executes fill/click/select.
- * 
- * @param page - The Playwright Page
- * @param instruction - The plain-English GPT prompt (e.g. "fill username", "click login", etc.)
- * @param data - Optional data to fill or select (e.g. the text to type or the label to select)
+ * - If GPT or the new locator is null, we skip the step rather than crashing.
  */
 export async function prompt(page: Page, instruction: string, data?: string) {
-  const htmlSnippet = await page.content();
-  const locator = await getCachedLocator(instruction, htmlSnippet);
-  const validated = await waitForCachedSelector(page, instruction, htmlSnippet, locator);
-  const action = (locator?.action || '').toLowerCase();
+  // Grab the full HTML from the page
+  const fullHTML = await page.content();
+
+  // 1️⃣ Retrieve a cached or newly generated locator
+  const locator = await getCachedLocator(instruction, fullHTML);
+
+  if (!locator) {
+    console.error(`❌ GPT returned null for prompt "${instruction}". Skipping step.`);
+    return;
+  }
+
+  // 2️⃣ Validate or re-try if needed
+  const validated = await waitForCachedSelector(page, instruction, fullHTML, locator);
+  if (!validated) {
+    console.error(`❌ Could not validate locator for prompt "${instruction}". Skipping step.`);
+    return;
+  }
+
+  // 3️⃣ Interpret GPT "action"
+  const action = (validated.action || '').toLowerCase();
 
   switch (true) {
     case action === 'fill':
@@ -105,13 +140,15 @@ export async function prompt(page: Page, instruction: string, data?: string) {
       break;
 
     default:
-      console.warn(`Unrecognized GPT action "${locator.action}" for prompt "${instruction}".`);
+      console.warn(`⚠️ Unrecognized GPT action "${validated.action}" for "${instruction}".`);
       break;
   }
 
+  // Short pause
   await page.waitForTimeout(500);
 }
 
+/** Return how many GPT API calls were made this run. */
 export function getGptCallCount() {
   return gptCallCount;
 }

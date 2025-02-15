@@ -1,7 +1,7 @@
 {
   "fill username<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "fill",
-    "selector": "input[data-test='username']"
+    "selector": "input#user-name"
   },
   "fill password<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "fill",
@@ -11,25 +11,25 @@
     "action": "click",
     "selector": "input#login-button"
   },
-  "select 'Price (low to high)'. The sort control is a <select> element.<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+  "select product sort container 'Price (low to high)'. The sort control is a <select> element.<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "select",
     "selector": "select.product_sort_container"
   },
   "click add to cart for Sauce Labs Bike Light<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "click",
-    "selector": "button#add-to-cart-sauce-labs-bike-light"
+    "selector": "button[data-test='add-to-cart-sauce-labs-bike-light']"
   },
   "click add to cart for Sauce Labs Backpack<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "click",
-    "selector": "button#add-to-cart-sauce-labs-backpack"
+    "selector": "button[data-test='add-to-cart-sauce-labs-backpack']"
   },
   "click shopping cart link<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "click",
-    "selector": "a.shopping_cart_link[data-test='shopping-cart-link']"
+    "selector": "a.shopping_cart_link"
   },
   "click checkout button<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "click",
-    "selector": "button#checkout"
+    "selector": "button[data-test='checkout']"
   },
   "fill first name<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "fill",
@@ -45,22 +45,18 @@
   },
   "click continue button The continue button is an <input> element, not a <button><!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "click",
-    "selector": "input#continue"
+    "selector": "input[data-test='continue']"
   },
   "click finish button<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "click",
-    "selector": "#finish"
+    "selector": "button#finish"
   },
-  "click on the open menu - something exactly or similar to react-burger-menu-btn <!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
-    "action": "click",
-    "selector": "button#react-burger-menu-btn"
+  "select 'Price (low to high)'. The sort control is a <select> element.<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "select",
+    "selector": "select.product_sort_container"
   },
-  "click on all items <!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
-    "action": "click",
-    "selector": "a[data-test='inventory-sidebar-link']"
-  },
-  "click add to cart for Sauce Labs Bolt T-Shirt<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
-    "action": "click",
-    "selector": "button#add-to-cart-sauce-labs-bolt-t-shirt"
+  "fill date<!DOCTYPE html><html lang=\"en\"><head><link href=\"https://fonts.googleapis.com/css?family=Archivo:400,500|Arimo:400,500|Bitter:400,500|EB+Garamond:400,500|Lato|Libre+Baskervill|Libre+Franklin:400,500|L": {
+    "action": "fill",
+    "selector": "input#input-date"
   }
 }
