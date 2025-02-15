@@ -105,6 +105,58 @@ This ensures **fast execution** across multiple tests.
 ### **📊 Data-Driven Testing**
 Tests read user data from **CSV files** (`testData.csv`), allowing **parameterized test cases**.
 
+
+Extraction & Pruning
+
+We added extractRelevantHTML.ts, which prunes scripts, styles, large base64 images, etc. before sending snippets to GPT.
+This prevents token overflow and focuses GPT on relevant elements.
+Caching & GPT
+
+We continue to cache locators in JSON to avoid repeated GPT calls.
+Now we have short emoji logs indicating when GPT is called and responds.
+Date Input Handling
+
+We discovered <input type="date"> needs YYYY-MM-DD format.
+We convert CSV data from DD/MM/YYYY to the correct ISO format in the test.
+Parallel Execution & Worker Setup
+
+By default, we run with workers=2, parallelizing tests for faster coverage.
+Optional Manual Overrides
+
+If GPT occasionally guesses incorrectly for a crucial element (like the “shopping cart link”), you can override with a known stable locator or a dictionary for those steps.
+
+Detailed Extraction Process
+Raw HTML Pruning (Optional)
+
+In regexPrune.ts, we strip out large comments, data attributes, or other raw text bloat using regex.
+DOM-Based Pruning (pruneHtml.ts)
+
+We parse the pruned string with JSDOM, then remove:
+script and style tags
+link rel="stylesheet"  and meta tags
+Base64-encoded images img src "dataimage"
+Inline styles and other large irrelevant parts
+Generate a Final Snippet
+
+After pruning we produce a cleaned HTML string.
+Optionally log it to ./logs/cleaned_html_1234.html for debugging.
+Send to GPT
+
+We call getLocatorFromGPT3_5(prompt, cleanedHTML) or GPT-4.
+GPT returns a JSON with "action" (fill/click/select) and "selector" (like #login-button).
+Caching & Validation
+
+We store the final locator in gptCache json
+If the selector fails in Playwright, we remove it from cache and re-try.
+Manual or Special Cases
+
+For known stable elements or date inputs, we can override the format or fill logic.
+Or skip GPT entirely for certain steps, if needed.
+Why This Matters
+
+Without pruning, huge HTML can cause GPT to exceed context limits (16k tokens).
+With minimal relevant HTML, GPT is more accurate and runs faster.
+
 ---
 
 ## 📢 Contributing  
