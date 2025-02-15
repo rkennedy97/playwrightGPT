@@ -23,8 +23,11 @@ Return the result as a JSON object with two properties:
 }`;
 
   try {
+    // Short emoji log before request
+    console.log(`🔎 [GPT-3.5] Searching locator for: "${action}"...`);
+
     const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo", // Cheaper model
+      model: "gpt-3.5-turbo",
       messages: [
         {
           role: "system",
@@ -37,15 +40,17 @@ Return the result as a JSON object with two properties:
       temperature: 0,
     });
 
+    // Short emoji log after response
+    console.log(`✅ [GPT-3.5] Locator found for: "${action}"`);
+
     const messageContent = response.choices[0].message?.content;
     if (!messageContent) {
       throw new Error("No content returned from OpenAI API (3.5).");
     }
 
-    const gptText = messageContent.trim();
-    return JSON.parse(gptText);
+    return JSON.parse(messageContent.trim());
   } catch (error) {
-    console.error("Error from OpenAI API (3.5):", error);
+    console.error("❌ [GPT-3.5] Error:", error);
     return null;
   }
 }
@@ -65,8 +70,11 @@ Return the result as a JSON object with two properties:
 }`;
 
   try {
+    // Short emoji log before request
+    console.log(`🤖 [GPT-4] Searching locator for: "${action}"...`);
+
     const response = await openai.chat.completions.create({
-      model: "gpt-4", // More expensive model
+      model: "gpt-4",
       messages: [
         {
           role: "system",
@@ -79,15 +87,17 @@ Return the result as a JSON object with two properties:
       temperature: 0,
     });
 
+    // Short emoji log after response
+    console.log(`✅ [GPT-4] Locator found for: "${action}"`);
+
     const messageContent = response.choices[0].message?.content;
     if (!messageContent) {
       throw new Error("No content returned from OpenAI API (GPT-4).");
     }
 
-    const gptText = messageContent.trim();
-    return JSON.parse(gptText);
+    return JSON.parse(messageContent.trim());
   } catch (error) {
-    console.error("Error from OpenAI API (GPT-4):", error);
+    console.error("❌ [GPT-4] Error:", error);
     return null;
   }
 }

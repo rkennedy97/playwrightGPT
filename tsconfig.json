@@ -6,7 +6,9 @@
     "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true        // optional, but often helps avoid type conflicts
+    "skipLibCheck": true,        // optional, but often helps avoid type conflicts
+    "lib": ["ES2020", "DOM"], // ensure "DOM" is listed here
+
   },
   "include": [
     "./**/*.ts"

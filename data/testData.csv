@@ -1,4 +1,2 @@
-username,password,firstName,lastName,postalCode
-standard_user,secret_sauce,Ryan,Kennedy,BT449QN
-standard_user,secret_sauce,Bob,Kennedy,BT449QN
-standard_user,secret_sauce,Sam,Kennedy,BT449QN
+username,password,firstName,lastName,postalCode,date
+standard_user,secret_sauce,Ryan,Kennedy,BT449QN,1997-06-19
