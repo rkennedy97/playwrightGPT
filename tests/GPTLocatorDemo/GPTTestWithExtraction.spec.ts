@@ -2,7 +2,14 @@
 import { test, expect } from '@playwright/test';
 import { parse } from 'csv-parse/sync';
 import fs from 'fs';
+import { printTestCost, printWeeklySummary, printAllTimeSummary } from '../../utilities/Common/commonControls/gptUsageTracker';
 import { prompt, getGptCallCount, setCacheFileName } from '../../utilities/Common/commonControls/gptLib';
+
+test.afterAll(async () => {
+  // Summarize usage & cost
+  printWeeklySummary();
+  printAllTimeSummary();
+});
 
 // Interface for test data
 interface CSVDataRow {
@@ -40,7 +47,7 @@ test.describe.parallel('Purchase Flow Tests', () => {
       await page.waitForTimeout(500);
 
       // 3️⃣ Sort products
-      await prompt(page, "select product sort container 'Price (low to high)'. The sort control is a <select> element.", "Price (low to high)");
+      await prompt(page, "select 'Price (low to high)'. The sort control is a <select> element.", "Price (low to high)");
 
       // 4️⃣ Add to cart
       await prompt(page, "click add to cart for Sauce Labs Bike Light");
@@ -64,7 +71,7 @@ test.describe.parallel('Purchase Flow Tests', () => {
       await page.waitForTimeout(1000);
       await prompt(page, "fill date", row.date);
       
-      console.log(`🔹 Completed all test steps for: ${row.username}`);
+      console.log(`🔹 Completed all test steps for: Purchase Flow`);
     });
   });
 });

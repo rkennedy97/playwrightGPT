@@ -11,8 +11,8 @@
     "action": "click",
     "selector": "input#login-button"
   },
-  "select product sort container 'Price (low to high)'. The sort control is a <select> element.<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
-    "action": "select",
+  "select 'Price (low to high)'. The sort control is a <select> element.<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
+    "action": "selectOption",
     "selector": "select.product_sort_container"
   },
   "click add to cart for Sauce Labs Bike Light<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
@@ -25,11 +25,11 @@
   },
   "click shopping cart link<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "click",
-    "selector": "a.shopping_cart_link"
+    "selector": "a.shopping_cart_link[data-test='shopping-cart-link']"
   },
   "click checkout button<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "click",
-    "selector": "button[data-test='checkout']"
+    "selector": "button[data-test=checkout]"
   },
   "fill first name<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "fill",
@@ -49,14 +49,10 @@
   },
   "click finish button<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
     "action": "click",
-    "selector": "button#finish"
-  },
-  "select 'Price (low to high)'. The sort control is a <select> element.<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" href=\"/favicon.ico\"><meta name=\"robots\" content=\"noindex\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"": {
-    "action": "select",
-    "selector": "select.product_sort_container"
+    "selector": "#finish"
   },
   "fill date<!DOCTYPE html><html lang=\"en\"><head><link href=\"https://fonts.googleapis.com/css?family=Archivo:400,500|Arimo:400,500|Bitter:400,500|EB+Garamond:400,500|Lato|Libre+Baskervill|Libre+Franklin:400,500|L": {
     "action": "fill",
-    "selector": "input#input-date"
+    "selector": "input[id=input-date]"
   }
 }
