@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import dotenv from "dotenv";
+import { accumulateUsage, printWeeklySummary } from "./gptUsageTracker";
 
 dotenv.config();
 
@@ -23,7 +24,6 @@ Return the result as a JSON object with two properties:
 }`;
 
   try {
-    // Short emoji log before request
     console.log(`🔎 [GPT-3.5] Searching locator for: "${action}"...`);
 
     const response = await openai.chat.completions.create({
@@ -31,8 +31,7 @@ Return the result as a JSON object with two properties:
       messages: [
         {
           role: "system",
-          content:
-            "You are an assistant that returns JSON describing Playwright locators. Only output a single valid JSON object with keys 'action' and 'selector'.",
+          content: "You are an assistant that returns JSON describing Playwright locators. Only output a single valid JSON object with keys 'action' and 'selector'.",
         },
         { role: "user", content: prompt },
       ],
@@ -40,7 +39,9 @@ Return the result as a JSON object with two properties:
       temperature: 0,
     });
 
-    // Short emoji log after response
+    // Accumulate usage
+    accumulateUsage(response.usage, "3.5");
+
     console.log(`✅ [GPT-3.5] Locator found for: "${action}"`);
 
     const messageContent = response.choices[0].message?.content;
@@ -70,7 +71,6 @@ Return the result as a JSON object with two properties:
 }`;
 
   try {
-    // Short emoji log before request
     console.log(`🤖 [GPT-4] Searching locator for: "${action}"...`);
 
     const response = await openai.chat.completions.create({
@@ -78,8 +78,7 @@ Return the result as a JSON object with two properties:
       messages: [
         {
           role: "system",
-          content:
-            "You are an assistant that returns JSON describing Playwright locators. Only output a single valid JSON object with keys 'action' and 'selector'.",
+          content: "You are an assistant that returns JSON describing Playwright locators. Only output a single valid JSON object with keys 'action' and 'selector'.",
         },
         { role: "user", content: prompt },
       ],
@@ -87,7 +86,9 @@ Return the result as a JSON object with two properties:
       temperature: 0,
     });
 
-    // Short emoji log after response
+    // Accumulate usage
+    accumulateUsage(response.usage, "4");
+
     console.log(`✅ [GPT-4] Locator found for: "${action}"`);
 
     const messageContent = response.choices[0].message?.content;

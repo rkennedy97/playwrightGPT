@@ -1,0 +1,26 @@
+{
+  "2025-02-14": {
+    "gpt35": {
+      "promptTokens": 78965,
+      "completionTokens": 931,
+      "apiCalls": 42
+    },
+    "gpt4": {
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "apiCalls": 0
+    }
+  },
+  "2025-02-16": {
+    "gpt35": {
+      "promptTokens": 24454,
+      "completionTokens": 314,
+      "apiCalls": 14
+    },
+    "gpt4": {
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "apiCalls": 0
+    }
+  }
+}
