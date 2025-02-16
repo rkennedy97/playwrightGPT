@@ -2,7 +2,7 @@
 import { test, expect } from '@playwright/test';
 import { parse } from 'csv-parse/sync';
 import fs from 'fs';
-import { printTestCost, printWeeklySummary, printAllTimeSummary } from '../../utilities/Common/commonControls/gptUsageTracker';
+import { printWeeklySummary, printAllTimeSummary } from '../../utilities/Common/commonControls/gptUsageTracker';
 import { prompt, getGptCallCount, setCacheFileName } from '../../utilities/Common/commonControls/gptLib';
 
 test.afterAll(async () => {
@@ -71,6 +71,18 @@ test.describe.parallel('Purchase Flow Tests', () => {
       await page.waitForTimeout(1000);
       await prompt(page, "fill date", row.date);
       
+      await page.goto('https://the-internet.herokuapp.com/challenging_dom');
+      await page.waitForTimeout(1000);
+      await prompt(page, "click edit closest to Phaedrum8");
+
+      await page.goto('https://the-internet.herokuapp.com/inputs');
+      await page.waitForTimeout(1000);
+      await prompt(page, "fill number", "1000");
+
+      await page.goto('https://www.dotabuff.com/');
+      await page.waitForTimeout(1000);
+      await prompt(page, "click Abaddon closest to Hero Win RatesThis Week");
+
       console.log(`🔹 Completed all test steps for: Purchase Flow`);
     });
   });
