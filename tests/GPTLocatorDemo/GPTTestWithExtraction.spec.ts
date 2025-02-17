@@ -79,10 +79,6 @@ test.describe.parallel('Purchase Flow Tests', () => {
       await page.waitForTimeout(1000);
       await prompt(page, "fill number", "1000");
 
-      await page.goto('https://www.dotabuff.com/');
-      await page.waitForTimeout(1000);
-      await prompt(page, "click Abaddon closest to Hero Win RatesThis Week");
-
       console.log(`🔹 Completed all test steps for: Purchase Flow`);
     });
   });
