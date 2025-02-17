@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import dotenv from "dotenv";
-import { accumulateUsage, printWeeklySummary } from "./gptUsageTracker";
+import { accumulateUsage } from "./gptUsageTracker";
 
 dotenv.config();
 
@@ -78,13 +78,22 @@ Return the result as a JSON object with two properties:
       messages: [
         {
           role: "system",
-          content: "You are an assistant that returns JSON describing Playwright locators. Only output a single valid JSON object with keys 'action' and 'selector'.",
+          content: `
+    You are an assistant that returns JSON describing valid Playwright locators. 
+    Only output a single valid JSON object with keys "action" and "selector". 
+    
+    Guidelines:
+    1. The "selector" must be valid in Playwright (CSS, text=, role=, :has(), :has-text(), etc.).
+    2. Do NOT produce syntax like "closest('tr')" or other non-standard chain selectors.
+    3. If you want to reference a row with text "Foo", use something like "tr:has-text('Foo')" then "text='edit'" inside it, or build a two-step approach. 
+    4. We only accept a single JSON object with "action" and "selector".`
         },
         { role: "user", content: prompt },
       ],
       max_tokens: 150,
       temperature: 0,
     });
+    
 
     // Accumulate usage
     accumulateUsage(response.usage, "4");

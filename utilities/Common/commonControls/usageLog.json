@@ -13,14 +13,14 @@
   },
   "2025-02-16": {
     "gpt35": {
-      "promptTokens": 24454,
-      "completionTokens": 314,
-      "apiCalls": 14
+      "promptTokens": 28881,
+      "completionTokens": 403,
+      "apiCalls": 18
     },
     "gpt4": {
-      "promptTokens": 0,
-      "completionTokens": 0,
-      "apiCalls": 0
+      "promptTokens": 64394,
+      "completionTokens": 830,
+      "apiCalls": 36
     }
   }
 }

@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 import { Page } from '@playwright/test';
-import { getLocatorFromGPT3_5 } from './commonControls'; 
+import { getLocatorFromGPT3_5, getLocatorFromGPT4 } from './commonControls'; 
 import { extractRelevantHTML } from './extractRelevantHTML'; // <-- ensure correct import path
 
 // Default cache file path, which can be changed dynamically.
@@ -125,14 +125,18 @@ export async function prompt(page: Page, instruction: string, data?: string) {
 
   switch (true) {
     case action === 'fill':
+      console.log(`👉 Attempting to fill: "${validated.selector}" for prompt: "${instruction}"`);
       await page.fill(validated.selector, data || '');
       break;
 
     case action === 'click':
+      console.log(`👉 Attempting to click: "${validated.selector}" for prompt: "${instruction}"`);
       await page.click(validated.selector);
       break;
 
     case action.startsWith('select'):
+      console.log(`👉 Attempting to select: "${validated.selector}" for prompt: "${instruction}"`);
+
       if (!data) {
         throw new Error(`No data provided for select action in prompt "${instruction}"`);
       }
